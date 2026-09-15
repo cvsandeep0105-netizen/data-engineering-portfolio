@@ -1,0 +1,200 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Engineering Report — EV Fleet Data Platform</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.report{max-width:1100px;margin:0 auto;padding:70px 24px}
+.report h1{font-size:clamp(2.4rem,5vw,4.5rem);line-height:1.05;margin-bottom:18px}
+.report h2{margin-top:56px;font-size:1.7rem}
+.report h3{margin-top:30px;font-size:1.15rem}
+.report p,.report li{line-height:1.75;color:#b8c0cc}
+.report ul{padding-left:22px}
+.meta{color:#8f9aaa;margin-bottom:45px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:30px 0}
+.card{border:1px solid #29313d;border-radius:14px;padding:20px;background:#11161d}
+.metric{font-size:1.7rem;font-weight:700}
+.label{color:#8f9aaa;font-size:.9rem;margin-top:5px}
+code{background:#171d25;padding:2px 6px;border-radius:5px}
+table{width:100%;border-collapse:collapse;margin:24px 0}
+th,td{border:1px solid #29313d;padding:12px;text-align:left;vertical-align:top}
+th{font-weight:700}
+.notice{border-left:3px solid #8f9aaa;padding:16px 20px;margin:25px 0;background:#11161d}
+.back{display:inline-block;margin-bottom:35px}
+</style>
+</head>
+<body>
+<main class="report">
+<a class="back" href="index.html">← Back to portfolio</a>
+
+<h1>Engineering Report</h1>
+<p class="meta">Enterprise AI-Powered Real-Time EV Fleet Data Platform · Final Engineering Record · September 2026</p>
+
+<div class="notice">
+<strong>Project status: FINAL ACCEPTANCE</strong><br>
+A production-oriented data engineering platform built around real-world electric-vehicle telemetry, streaming ingestion, distributed processing, PostgreSQL analytics, machine-learning anomaly detection, FastAPI services, React product interfaces, Docker, Kubernetes, CI/CD and security validation.
+</div>
+
+<h2>1. Executive Summary</h2>
+<p>
+This project demonstrates an end-to-end real-time EV fleet data platform rather than an isolated analytics or machine-learning demo. The system ingests telemetry, validates and processes data, persists operational information, generates analytical features, performs anomaly detection, exposes APIs, and presents the resulting intelligence through a web product.
+</p>
+<p>
+The engineering objective was reliability and production-oriented design: reproducible processing, explicit data-quality gates, containerized services, Kubernetes orchestration, automated testing, dependency security validation, measurable API performance, and honest documentation of deployment boundaries.
+</p>
+
+<h2>2. Architecture</h2>
+<p>
+The final product chain is:
+<strong>Real EV Telemetry → FastAPI Ingestion → Apache Kafka → Streaming Consumer → PostgreSQL / Apache Spark / Isolation Forest → FastAPI + React Product Layer</strong>.
+</p>
+<div class="grid">
+<div class="card"><div class="metric">98M+</div><div class="label">real telemetry records</div></div>
+<div class="card"><div class="metric">7</div><div class="label">real production EVs</div></div>
+<div class="card"><div class="metric">160,774</div><div class="label">one-minute feature windows</div></div>
+<div class="card"><div class="metric">8,251</div><div class="label">AI quality-gated samples</div></div>
+</div>
+
+<h2>3. Real-World Data Foundation</h2>
+<p>
+The platform uses the TUMFTM electric-vehicle UDS dataset as its real-world telemetry foundation. The dataset contains measurements from seven series-production EVs: two Volkswagen ID.3 Pro Performance vehicles and five CUPRA Born vehicles.
+</p>
+<p>
+The raw Parquet data contains approximately 98 million telemetry rows. The engineering pipeline converts the source into canonical vehicle datasets, applies explicit validation rules, and produces downstream feature and AI datasets.
+</p>
+
+<h2>4. Data Quality Engineering</h2>
+<p>
+Data quality is implemented as an explicit pipeline gate rather than an informal observation. The canonicalization stage processed 98,061,214 records, with 98,060,402 accepted and 812 rejected. The resulting data-quality gate passed.
+</p>
+<table>
+<tr><th>Stage</th><th>Result</th></tr>
+<tr><td>Raw telemetry</td><td>98,061,214 records</td></tr>
+<tr><td>Valid canonical records</td><td>98,060,402</td></tr>
+<tr><td>Rejected records</td><td>812</td></tr>
+<tr><td>Data-quality gate</td><td>PASS</td></tr>
+</table>
+
+<h2>5. Feature Engineering</h2>
+<p>
+The real-world feature layer produces 160,774 one-minute vehicle windows covering seven vehicles. Features include battery state-of-charge, battery voltage, vehicle speed, battery temperature and quality-related measurements.
+</p>
+<p>
+The resulting feature dataset provides a stable analytical interface between raw telemetry and downstream machine-learning workloads.
+</p>
+
+<h2>6. Machine Learning / MLOps</h2>
+<p>
+The anomaly-detection layer uses Isolation Forest with real telemetry-derived features. The production model was trained from 8,251 quality-gated AI samples, using 6,600 training records and 1,651 evaluation records.
+</p>
+<table>
+<tr><th>Metric</th><th>Result</th></tr>
+<tr><td>Model</td><td>Isolation Forest</td></tr>
+<tr><td>Precision</td><td>0.7573</td></tr>
+<tr><td>Recall</td><td>1.0000</td></tr>
+<tr><td>F1</td><td>0.8619</td></tr>
+<tr><td>Model version</td><td>real-world-1.0.0</td></tr>
+</table>
+<p>
+The model artifact is persisted separately from application code and loaded through configuration. The API supports model status and real-world risk inference endpoints.
+</p>
+
+<h2>7. Streaming and Database Engineering</h2>
+<p>
+Apache Kafka provides the event-streaming layer while the consumer processes incoming telemetry into the operational data path. PostgreSQL provides persistent relational storage for application and analytical workloads.
+</p>
+<p>
+The architecture separates ingestion, streaming, persistence and product concerns so individual components can evolve without requiring a complete system rewrite.
+</p>
+
+<h2>8. API and Product Layer</h2>
+<p>
+FastAPI exposes the platform's operational and intelligence interfaces. The React frontend consumes these APIs to provide fleet visibility, vehicle status, alerts, battery health and AI insights.
+</p>
+<p>
+The final application was validated against the expected API route contract. The OpenAPI contract contains 16 expected routes with no missing routes.
+</p>
+
+<h2>9. Docker and Kubernetes</h2>
+<p>
+The platform is containerized and orchestrated locally through Docker Desktop Kubernetes. The deployment includes backend, frontend, Kafka, ZooKeeper, PostgreSQL, streaming/consumer services and the real-data replay path.
+</p>
+<p>
+Persistent model storage is backed by a Kubernetes PersistentVolume/PersistentVolumeClaim using a retained host-path volume. This keeps the trained model independent of ephemeral application containers.
+</p>
+
+<h2>10. CI/CD and Security</h2>
+<p>
+GitHub Actions validates backend quality, frontend lint/build, dependency security, Docker builds, Kubernetes manifests and production-container packaging.
+</p>
+<p>
+Dependency vulnerabilities were addressed incrementally. Backend dependencies were upgraded to secure versions after an audit identified vulnerable Kafka and JWT packages. Frontend dependency resolution was hardened with an explicit nanoid override. Subsequent security validation reported zero known vulnerabilities.
+</p>
+<p>
+Container releases use immutable Git SHA tags alongside the latest tag. Security checks include dependency auditing, secret-pattern validation and package vulnerability scanning.
+</p>
+
+<h2>11. Reliability and Testing</h2>
+<p>
+Testing follows an incremental acceptance model: existing passing components are preserved while failing components are isolated and corrected. Contract tests, application tests, API validation, data-quality gates and deployment validation are used throughout the platform.
+</p>
+<p>
+The final CI pipeline passed the backend, frontend, security, Docker, Kubernetes and release validation jobs after the dependency-security remediation.
+</p>
+
+<h2>12. Performance and Scalability</h2>
+<div class="grid">
+<div class="card"><div class="metric">20/20</div><div class="label">successful API benchmark requests</div></div>
+<div class="card"><div class="metric">77.278 ms</div><div class="label">API p95 latency</div></div>
+<div class="card"><div class="metric">35.933 ms</div><div class="label">mean latency</div></div>
+<div class="card"><div class="metric">29.649 ms</div><div class="label">p50 latency</div></div>
+</div>
+<p>
+The benchmark achieved 20/20 successful requests with minimum latency of 18.872 ms, mean latency of 35.933 ms, p50 of 29.649 ms, p95 of 77.278 ms and maximum latency of 77.278 ms.
+</p>
+
+<h2>13. Engineering Decisions and Trade-offs</h2>
+<ul>
+<li><strong>Kafka:</strong> selected to model a genuine event-streaming architecture rather than direct database writes from producers.</li>
+<li><strong>Spark:</strong> used for distributed processing and scalable feature transformation.</li>
+<li><strong>PostgreSQL:</strong> provides dependable relational persistence for the operational product layer.</li>
+<li><strong>Isolation Forest:</strong> appropriate for unsupervised anomaly detection where production anomaly labels are limited.</li>
+<li><strong>Kubernetes:</strong> provides service orchestration, health management and persistent workload configuration.</li>
+<li><strong>Real-world telemetry:</strong> prevents the platform from depending entirely on synthetic demonstration data.</li>
+</ul>
+
+<h2>14. Honest Production Boundary</h2>
+<div class="notice">
+The platform is production-oriented and production-engineered, but its final runtime demonstration is local Docker Desktop Kubernetes. No cloud production deployment is claimed because cloud credentials and infrastructure were not provisioned for this project.
+</div>
+<p>
+This distinction is intentional: engineering evidence is reported from verified implementation and tests rather than presenting an unexecuted cloud deployment as production.
+</p>
+
+<h2>15. Final Acceptance</h2>
+<p>
+The project reached final acceptance across the locked 30-area roadmap. The completed platform demonstrates real data ingestion, quality-controlled processing, streaming architecture, analytical storage, machine learning, API services, frontend product delivery, containerization, Kubernetes orchestration, CI/CD, security validation and measured performance.
+</p>
+
+<h2>16. Portfolio Value</h2>
+<p>
+This project is designed to demonstrate Senior/Lead Data Engineering capabilities: data-platform architecture, streaming systems, distributed processing, data quality, database engineering, ML integration, API design, containerization, Kubernetes, CI/CD, security and production-oriented operational thinking.
+</p>
+
+<h2>17. Key Technology Stack</h2>
+<p>
+Python · FastAPI · Apache Kafka · Apache Spark · PostgreSQL · SQLAlchemy · Alembic · React · Docker · Kubernetes · scikit-learn · GitHub Actions · GitHub Pages
+</p>
+
+<h2>18. Source Repository</h2>
+<p>
+The complete implementation, tests, infrastructure manifests and engineering history are available in the
+<a href="https://github.com/cvsandeep0105-netizen/enterprise-ai-real-time-ev-fleet-data-platform" target="_blank" rel="noopener">flagship GitHub repository ↗</a>.
+</p>
+
+<p class="meta">Engineering Report · Final Acceptance Record · Enterprise AI-Powered Real-Time EV Fleet Data Platform</p>
+</main>
+</body>
+</html>
