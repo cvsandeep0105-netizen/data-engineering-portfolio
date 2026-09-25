@@ -1,0 +1,606 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RetailIQ — Modern Data Warehouse & Analytics Engineering Platform</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;line-height:1.65;max-width:1150px;margin:0 auto;padding:40px;color:#202124;background:#fff}
+h1{font-size:36px;margin-bottom:8px}
+h2{font-size:25px;margin-top:42px;border-bottom:2px solid #ddd;padding-bottom:8px}
+h3{font-size:19px;margin-top:28px}
+.subtitle{font-size:19px;color:#555;margin-bottom:30px}
+.card{background:#f6f8fa;border-left:5px solid #333;padding:18px 22px;margin:18px 0}
+table{border-collapse:collapse;width:100%;margin:18px 0}
+th,td{border:1px solid #d0d7de;padding:10px;text-align:left}
+th{background:#f6f8fa}
+code{background:#f1f3f4;padding:2px 5px;border-radius:4px}
+pre{background:#111827;color:#f9fafb;padding:18px;overflow-x:auto;border-radius:6px}
+.badge{font-weight:bold}
+ul{margin-top:8px}
+</style>
+</head>
+
+<body>
+
+<h1>RetailIQ — Modern Data Warehouse & Analytics Engineering Platform</h1>
+
+<p class="subtitle">
+Project 03 — Production-Style Modern Data Warehouse + Analytics Engineering Platform
+</p>
+
+<div class="card">
+<strong>Project Status:</strong> Areas 01–50 Accepted &amp; Frozen<br>
+<strong>Final Acceptance:</strong> PASS<br>
+<strong>Local Production-Style Validation:</strong> PASS
+</div>
+
+<h2>Executive Summary</h2>
+
+<p>
+RetailIQ is an end-to-end modern data warehouse and analytics engineering platform
+built around the Olist Brazilian E-Commerce Public Dataset.
+</p>
+
+<p>
+The project demonstrates the complete analytical data lifecycle from source-data
+discovery and profiling through raw ingestion, staging, standardization,
+dimensional modeling, ELT, analytics engineering, business data marts,
+semantic modeling, analytical SQL, BI-ready products, testing, governance,
+observability, performance validation and dashboard delivery.
+</p>
+
+<p>
+The project was intentionally designed as a modern data warehouse and analytics
+engineering platform rather than a basic SQL analytics exercise.
+</p>
+
+<h2>Engineering Objectives</h2>
+
+<ul>
+<li>Build a layered analytical warehouse architecture.</li>
+<li>Preserve source-data integrity.</li>
+<li>Define explicit business grain and analytical entities.</li>
+<li>Implement dimensions, facts and surrogate-key strategy.</li>
+<li>Support historical data and Slowly Changing Dimensions.</li>
+<li>Implement full-refresh and incremental processing strategies.</li>
+<li>Create reusable intermediate and analytics-engineering transformations.</li>
+<li>Build business-oriented data marts.</li>
+<li>Define reusable business KPIs and semantic objects.</li>
+<li>Provide BI-ready analytical products.</li>
+<li>Implement automated data-quality and integration validation.</li>
+<li>Document lineage, governance and security boundaries.</li>
+<li>Validate performance, scalability and operational observability.</li>
+<li>Deliver a business-facing Streamlit analytics product.</li>
+</ul>
+
+<h2>Engineering Scope</h2>
+
+<p>
+RetailIQ was executed through 50 controlled engineering areas.
+Each area was designed, implemented, validated and frozen before final acceptance.
+</p>
+
+<pre>
+01–10  Business &amp; Source Foundation
+11–15  Platform Architecture
+16–23  Data Foundation
+24–32  Data Modeling
+33–40  ELT &amp; Analytics Engineering
+41–44  Business Intelligence Data Layer
+45–49  Production Engineering
+50     Final Engineering Delivery
+</pre>
+
+<h2>Source Dataset &amp; Discovery</h2>
+
+<p>
+The platform uses the Olist Brazilian E-Commerce Public Dataset. Source discovery,
+profiling, relationship analysis, data contracts and source-data expectations
+were documented before analytical implementation.
+</p>
+
+<table>
+<tr><th>Dataset</th><th>Validated Records</th></tr>
+<tr><td>Customers</td><td>99,441</td></tr>
+<tr><td>Geolocation</td><td>1,000,163</td></tr>
+<tr><td>Orders</td><td>99,441</td></tr>
+<tr><td>Order Items</td><td>112,650</td></tr>
+<tr><td>Payments</td><td>103,886</td></tr>
+<tr><td>Reviews</td><td>99,224</td></tr>
+<tr><td>Products</td><td>32,951</td></tr>
+<tr><td>Sellers</td><td>3,095</td></tr>
+<tr><td>Translation</td><td>71</td></tr>
+</table>
+
+<p>
+Original source CSV files are intentionally excluded from the public repository.
+</p>
+
+<h2>Platform Architecture</h2>
+
+<pre>
+Olist Source Data
+        |
+        v
+RAW / LANDING
+        |
+        v
+STAGING
+        |
+        v
+INTERMEDIATE / CORE
+        |
+        v
+DIMENSIONAL DATA WAREHOUSE
+        |
+        v
+BUSINESS DATA MARTS
+        |
+        v
+SEMANTIC / BUSINESS LAYER
+        |
+        v
+BI-READY DATA PRODUCTS
+        |
+        v
+RETAILIQ STREAMLIT DASHBOARD
+</pre>
+
+<h2>Data Foundation</h2>
+
+<p>
+The foundation layer establishes source preservation, validation and controlled
+transformation boundaries.
+</p>
+
+<ul>
+<li>Raw source representation preserved.</li>
+<li>Staging layer created for validation and standardization.</li>
+<li>Intermediate/core layer created for reusable transformation logic.</li>
+<li>Source relationships and dependencies documented.</li>
+<li>Duplicate behavior investigated rather than blindly removing records.</li>
+<li>Data reconciliation performed between processing layers.</li>
+</ul>
+
+<h2>Dimensional Warehouse</h2>
+
+<h3>Dimensions</h3>
+
+<ul>
+<li><code>dim_customer</code> — 99,441 records</li>
+<li><code>dim_product</code> — 32,951 records</li>
+<li><code>dim_seller</code> — 3,095 records</li>
+<li><code>dim_date</code> — 1,096 records</li>
+</ul>
+
+<h3>Facts</h3>
+
+<ul>
+<li><code>fact_orders</code> — 99,441 records</li>
+<li><code>fact_order_items</code> — 112,650 records</li>
+<li><code>fact_payments</code> — 103,886 records</li>
+<li><code>fact_reviews</code> — 99,224 records</li>
+</ul>
+
+<p>
+The warehouse design explicitly documents business grain, natural keys,
+surrogate keys, measures, relationships, conformed dimensions and role-playing
+dimension requirements.
+</p>
+
+<h2>Historical Data &amp; Slowly Changing Dimensions</h2>
+
+<p>
+Historical dimension behavior was designed as part of the dimensional modeling
+strategy. The engineering scope includes business-key identification,
+surrogate-key handling, change detection, historical record preservation,
+effective dates and current-record management.
+</p>
+
+<p>
+Late-arriving records and historical processing considerations were also
+documented as part of the warehouse design.
+</p>
+
+<h2>ELT Architecture</h2>
+
+<p>
+RetailIQ uses an ELT-oriented transformation architecture:
+</p>
+
+<pre>
+RAW
+ ↓
+STAGING
+ ↓
+STANDARDIZED DATA
+ ↓
+INTERMEDIATE / CORE
+ ↓
+WAREHOUSE
+ ↓
+BUSINESS MARTS
+ ↓
+SEMANTIC LAYER
+ ↓
+BI-READY PRODUCTS
+</pre>
+
+<p>
+The implementation documents full-refresh processing, incremental strategies,
+dependency-aware transformations, reusable core models and business-oriented
+analytical transformations.
+</p>
+
+<h2>Analytics Engineering</h2>
+
+<p>
+The analytics engineering layer separates reusable transformation logic from
+business-facing analytical products.
+</p>
+
+<ul>
+<li>Intermediate transformation layer</li>
+<li>Transformation dependency graph</li>
+<li>Reusable business logic</li>
+<li>Business data marts</li>
+<li>Semantic definitions</li>
+<li>BI-ready analytical products</li>
+</ul>
+
+<h2>Business Data Marts</h2>
+
+<table>
+<tr><th>Mart</th><th>Purpose</th></tr>
+<tr><td>Sales</td><td>Order and sales performance analysis</td></tr>
+<tr><td>Customer</td><td>Customer behavior and purchasing analysis</td></tr>
+<tr><td>Product</td><td>Product and category performance</td></tr>
+<tr><td>Seller / Fulfillment</td><td>Seller and delivery performance</td></tr>
+</table>
+
+<h2>Semantic &amp; Business Layer</h2>
+
+<p>
+The semantic layer exposes reusable business-facing analytical definitions
+without requiring consumers to understand the underlying warehouse joins.
+</p>
+
+<ul>
+<li>KPI Summary</li>
+<li>Business KPIs</li>
+<li>Sales Analysis</li>
+<li>Customer Analysis</li>
+<li>Product Analysis</li>
+<li>Seller &amp; Fulfillment Analysis</li>
+</ul>
+
+<h2>Business KPI Evidence</h2>
+
+<table>
+<tr><th>Metric</th><th>Validated Value</th></tr>
+<tr><td>Total Orders</td><td>99,441</td></tr>
+<tr><td>Total Customers</td><td>99,441</td></tr>
+<tr><td>Total Products</td><td>32,951</td></tr>
+<tr><td>Total Sellers</td><td>3,095</td></tr>
+<tr><td>Average Order Value</td><td>159.33</td></tr>
+<tr><td>On-Time Delivery Rate</td><td>93.22%</td></tr>
+<tr><td>Average Review Score</td><td>4.09</td></tr>
+</table>
+
+<h2>Analytical SQL</h2>
+
+<p>
+The analytical workload demonstrates business-oriented SQL rather than simple
+record retrieval.
+</p>
+
+<ul>
+<li>Monthly Sales</li>
+<li>Category Performance</li>
+<li>Customer Segmentation</li>
+<li>Seller Fulfillment</li>
+<li>Delivery Analysis</li>
+<li>Payment Analysis</li>
+<li>Review Analysis</li>
+<li>Window-function analysis</li>
+</ul>
+
+<h2>BI-Ready Data Products</h2>
+
+<ul>
+<li><code>bi_sales_overview</code> — 99,441 records</li>
+<li><code>bi_customer_overview</code> — 99,441 records</li>
+<li><code>bi_product_overview</code> — 32,951 records</li>
+<li><code>bi_seller_fulfillment</code> — 3,095 records</li>
+</ul>
+
+<h2>Data Quality Engineering</h2>
+
+<p>
+Automated validation was implemented across the platform.
+</p>
+
+<pre>
+DATA_QUALITY_CHECKS=34
+DATA_QUALITY_FAILURES=0
+DATA_QUALITY_STATUS=PASS
+</pre>
+
+<p>
+Validation includes row-count integrity, referential integrity, uniqueness,
+null expectations, business rules and consistency across analytical layers.
+</p>
+
+<h2>Automated Testing</h2>
+
+<pre>
+INTEGRATION_TESTS=9
+INTEGRATION_FAILURES=0
+CI_STATUS=PASS
+E2E_STATUS=PASS
+</pre>
+
+<p>
+Testing includes Python compilation, integration testing, data-quality
+validation, end-to-end validation, regression validation and artifact checks.
+</p>
+
+<h2>Data Lineage, Metadata &amp; Documentation</h2>
+
+<pre>
+LINEAGE_SECTIONS=7
+LINEAGE_EDGES=40
+LINEAGE_STATUS=PASS
+</pre>
+
+<p>
+Lineage documents the movement of data from source representation through
+warehouse, marts, semantic objects and BI-ready products.
+</p>
+
+<h2>Governance &amp; Security</h2>
+
+<pre>
+DATABASE=retailiq
+DATABASE_ROLE=retailiq_admin
+SCHEMAS=6
+DATABASE_OBJECTS=49
+GRANTS=343
+SECRET_BOUNDARY_STATUS=PASS
+</pre>
+
+<ul>
+<li>Database role separation</li>
+<li>Schema-level access control</li>
+<li>Secret exclusion</li>
+<li>Source-data exclusion</li>
+<li>Repository security boundaries</li>
+<li>Explicit local/cloud claim boundaries</li>
+</ul>
+
+<h2>Orchestration, Reliability &amp; Observability</h2>
+
+<p>
+Operational validation covers pipeline execution, step-level validation,
+execution evidence, failure detection and runtime observability.
+</p>
+
+<p>
+The implementation records execution evidence rather than relying only on
+successful manual execution.
+</p>
+
+<h2>Performance Engineering</h2>
+
+<pre>
+PERFORMANCE_QUERIES=5
+PERFORMANCE_AVG_MS=2405.857
+PERFORMANCE_MAX_MS=6057.035
+PERFORMANCE_STATUS=PASS
+</pre>
+
+<p>
+The measurements represent the validated local implementation environment.
+They are not presented as cloud production performance guarantees.
+</p>
+
+<h2>Scalability Engineering</h2>
+
+<pre>
+SCALABILITY_EXECUTIONS=15
+SCALABILITY_FAILURES=0
+SCALABILITY_QPS=1.27
+SCALABILITY_STATUS=PASS
+</pre>
+
+<p>
+Repeated analytical workloads were executed to evaluate runtime behavior and
+identify operational performance characteristics.
+</p>
+
+<h2>Cost Engineering</h2>
+
+<p>
+The validated implementation uses a controlled local runtime environment.
+Local runtime cost validation passed.
+</p>
+
+<p>
+No cloud production cost figure is claimed because RetailIQ is not presented
+as a deployed cloud production workload.
+</p>
+
+<h2>BI Product &amp; Dashboard</h2>
+
+<p>
+RetailIQ includes a Streamlit business intelligence application connected to
+the analytical warehouse.
+</p>
+
+<ol>
+<li>Executive Overview</li>
+<li>Sales Analytics</li>
+<li>Customer Analytics</li>
+<li>Product Analytics</li>
+<li>Seller &amp; Fulfillment</li>
+<li>Platform Health</li>
+</ol>
+
+<p>
+The dashboard validates the analytical platform as a consumable business
+product rather than stopping at database implementation.
+</p>
+
+<h2>Technology Stack</h2>
+
+<ul>
+<li>Python</li>
+<li>SQL</li>
+<li>PostgreSQL</li>
+<li>Pandas</li>
+<li>SQLAlchemy</li>
+<li>psycopg2</li>
+<li>Pytest</li>
+<li>Streamlit</li>
+<li>Git</li>
+<li>GitHub</li>
+<li>PowerShell</li>
+<li>Docker</li>
+<li>CI/CD validation</li>
+</ul>
+
+<h2>Engineering Decisions &amp; Trade-offs</h2>
+
+<p>
+Technology and architecture decisions were documented through the project's
+decision-matrix process. Candidate technologies included PostgreSQL, SQL Server,
+Snowflake, BigQuery, Redshift and Databricks SQL Warehouse.
+</p>
+
+<p>
+The project deliberately separates technology evaluation from unsupported
+claims of universal technology superiority. The implemented local PostgreSQL
+runtime represents implementation evidence for this project.
+</p>
+
+<h2>Production Boundary &amp; Limitations</h2>
+
+<p>
+RetailIQ is a production-style engineering project validated in a controlled
+local environment.
+</p>
+
+<p>The project does not claim:</p>
+
+<ul>
+<li>Cloud production deployment</li>
+<li>Production customer traffic</li>
+<li>Enterprise SLA guarantees</li>
+<li>Cloud-scale capacity</li>
+<li>Production cloud cost figures</li>
+<li>Live enterprise operations</li>
+</ul>
+
+<h2>Safe Interview Demonstration</h2>
+
+<p>
+The project can be demonstrated through the validated warehouse, analytical
+SQL outputs, data-quality checks, integration tests, performance evidence and
+Streamlit dashboard.
+</p>
+
+<p>
+The recommended demonstration flow is:
+</p>
+
+<pre>
+Source Dataset
+   ↓
+Warehouse Architecture
+   ↓
+Dimensional Model
+   ↓
+Business Marts
+   ↓
+Semantic Layer
+   ↓
+Data Quality
+   ↓
+Testing
+   ↓
+Analytical SQL
+   ↓
+Dashboard
+   ↓
+Performance &amp; Final Acceptance
+</pre>
+
+<h2>Evidence &amp; Documentation</h2>
+
+<p>
+The project contains 50 controlled engineering areas with supporting
+documentation and implementation evidence.
+</p>
+
+<pre>
+AREA_01_49_COUNT=49
+AREA_01_49_FAILURE_COUNT=0
+EVIDENCE_ARTIFACT_COUNT=8
+MISSING_EVIDENCE_COUNT=0
+IMPLEMENTATION_ARTIFACT_COUNT=8
+MISSING_IMPLEMENTATION_COUNT=0
+SECRET_BOUNDARY_STATUS=PASS
+GIT_REMOTE_STATUS=PASS
+FINAL_ACCEPTANCE_STATUS=PASS
+FINAL_ACCEPTANCE_ARTIFACT_STATUS=PASS
+</pre>
+
+<h2>Final Acceptance</h2>
+
+<p>
+The project reached final engineering acceptance after validation of all
+50 controlled areas.
+</p>
+
+<pre>
+PROJECT_03_FREEZE_STATUS=FROZEN
+AREAS_FROZEN=01-50
+FINAL_ACCEPTANCE=PASS
+PUBLICATION_STATUS=PENDING
+</pre>
+
+<div class="card">
+<strong>RetailIQ Final Status:</strong><br><br>
+50 Areas Accepted &amp; Frozen<br>
+Data Quality: PASS<br>
+Integration Testing: PASS<br>
+E2E Validation: PASS<br>
+Performance Validation: PASS<br>
+Scalability Validation: PASS<br>
+Governance Validation: PASS<br>
+Observability Validation: PASS<br>
+Dashboard Validation: PASS<br>
+Final Acceptance: PASS
+</div>
+
+<h2>Repository</h2>
+
+<p>
+RetailIQ implementation repository:
+</p>
+
+<p>
+<strong>https://github.com/cvsandeep0105-netizen/retailiq-modern-data-warehouse</strong>
+</p>
+
+<h2>Author</h2>
+
+<p>
+<strong>Sandeep Reddy</strong><br>
+Data Engineer | Modern Data Warehousing | Analytics Engineering
+</p>
+
+</body>
+</html>
+
