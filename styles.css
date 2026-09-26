@@ -482,6 +482,59 @@ h1 span {
   border-color: rgba(98,213,255,.38);
 }
 
+.project-focus {
+  margin: -8px 0 16px;
+  color: var(--muted);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 18px 0;
+}
+
+.project-tech span {
+  padding: 5px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: .68rem;
+}
+
+.project-evidence {
+  margin-top: 18px;
+  padding-top: 15px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .82rem;
+}
+
+.roadmap-card {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.roadmap-card .project-evidence {
+  margin-top: auto;
+}
+
+.roadmap-card .project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.roadmap-card .project-links a {
+  margin-top: 0;
+}
+
 .status {
   display: inline-block;
   margin-bottom: 20px;
