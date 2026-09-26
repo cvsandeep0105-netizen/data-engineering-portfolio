@@ -19,7 +19,7 @@ This portfolio presents a progression across complementary Data Engineering syst
 |---|---|---|
 | **01 — Enterprise AI-Powered Real-Time EV Fleet Data Platform** | Real-time streaming, Kafka, Spark, PostgreSQL, Kubernetes and AI-enabled data systems | **Complete / Frozen** |
 | **02 — Cloud-Native Lakehouse, CDC & AI-Ready Data Platform** | AWS, S3, CDC, Parquet, Apache Iceberg, Terraform, governance and observability | **Complete / Frozen** |
-| **03 — Modern Warehouse + Analytics Engineering** | Modern analytical data platforms, ELT, data modeling and BI-ready data | **Planned** |
+| **03 — Modern Warehouse + Analytics Engineering** | Modern analytical data platforms, ELT, data modeling and BI-ready data | **Complete / Frozen** |
 
 ## Engineering Approach
 
@@ -74,4 +74,4 @@ The portfolio demonstrates engineering across real-time data platforms, cloud da
 
 ---
 
-**Portfolio status:** Projects 01 and 02 complete / frozen. Project 03 planned.
+**Portfolio status:** Projects 01, 02 and 03 complete / frozen.
