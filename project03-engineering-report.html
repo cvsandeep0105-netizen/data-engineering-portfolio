@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RetailIQ — Modern Data Warehouse & Analytics Engineering Platform</title>
+<title>RetailIQ &#8212; Modern Data Warehouse &amp; Analytics Engineering Platform</title>
 <style>
 
 :root{--bg:#08111f;--panel:#0f1b2d;--panel2:#13243a;--text:#e8eef7;--muted:#9fb0c5;--line:#263952;--accent:#65d6ff;--accent2:#8b9cff;--ok:#63e6be;--warn:#ffd166}
@@ -44,19 +44,25 @@ pre.command{background:#050c15;border:1px solid var(--line);padding:18px;border-
 @media(max-width:850px){h1{font-size:36px}.grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.grid{grid-template-columns:1fr}.container{padding:0 16px}}
 
+
+body { max-width: 1100px; margin: 0 auto !important; padding: 28px 36px !important; box-sizing: border-box; }
+.report-diagram{white-space:pre-wrap;overflow-wrap:anywhere;max-width:100%;box-sizing:border-box;padding:22px 28px;margin:18px 0 30px;border-radius:10px;line-height:1.65;overflow-x:auto}
+.demo-flow{margin:18px 0 30px;padding:22px 28px;border-radius:10px;background:#101d2b}
+.demo-flow ol{margin:0;padding-left:28px}
+.demo-flow li{padding:8px 0;line-height:1.6}
 </style>
 </head>
 
 <body>
 
-<h1>RetailIQ — Modern Data Warehouse & Analytics Engineering Platform</h1>
+<h1>RetailIQ &#8212; Modern Data Warehouse &amp; Analytics Engineering Platform</h1>
 
 <p class="subtitle">
-Project 03 — Production-Style Modern Data Warehouse + Analytics Engineering Platform
+Project 03 &#8212; Production-Style Modern Data Warehouse + Analytics Engineering Platform
 </p>
 
 <div class="card">
-<strong>Project Status:</strong> Areas 01–50 Accepted &amp; Frozen<br>
+<strong>Project Status:</strong> Areas 01&#8211;30 Accepted &amp; Frozen<br>
 <strong>Final Acceptance:</strong> PASS<br>
 <strong>Local Production-Style Validation:</strong> PASS
 </div>
@@ -103,19 +109,17 @@ engineering platform rather than a basic SQL analytics exercise.
 <h2>Engineering Scope</h2>
 
 <p>
-RetailIQ was executed through 50 controlled engineering areas.
+RetailIQ was executed through 30 controlled engineering areas.
 Each area was designed, implemented, validated and frozen before final acceptance.
 </p>
 
-<pre>
-01–10  Business &amp; Source Foundation
-11–15  Platform Architecture
-16–23  Data Foundation
-24–32  Data Modeling
-33–40  ELT &amp; Analytics Engineering
-41–44  Business Intelligence Data Layer
-45–49  Production Engineering
-50     Final Engineering Delivery
+<pre class="report-diagram">
+01-05  Business Requirements &amp; Source Discovery
+06-10  Warehouse Architecture &amp; Technology Decisions
+11-15  Data Modeling &amp; Warehouse Foundation
+16-20  ELT &amp; Analytics Engineering
+21-25  Data Marts, Metrics &amp; Data Quality
+26-30  Governance, Reliability, Performance &amp; Final Acceptance
 </pre>
 
 <h2>Source Dataset &amp; Discovery</h2>
@@ -145,7 +149,7 @@ Original source CSV files are intentionally excluded from the public repository.
 
 <h2>Platform Architecture</h2>
 
-<pre>
+<pre class="report-diagram">
 Olist Source Data
         |
         v
@@ -194,19 +198,19 @@ transformation boundaries.
 <h3>Dimensions</h3>
 
 <ul>
-<li><code>dim_customer</code> — 99,441 records</li>
-<li><code>dim_product</code> — 32,951 records</li>
-<li><code>dim_seller</code> — 3,095 records</li>
-<li><code>dim_date</code> — 1,096 records</li>
+<li><code>dim_customer</code> &#8212; 99,441 records</li>
+<li><code>dim_product</code> &#8212; 32,951 records</li>
+<li><code>dim_seller</code> &#8212; 3,095 records</li>
+<li><code>dim_date</code> &#8212; 1,096 records</li>
 </ul>
 
 <h3>Facts</h3>
 
 <ul>
-<li><code>fact_orders</code> — 99,441 records</li>
-<li><code>fact_order_items</code> — 112,650 records</li>
-<li><code>fact_payments</code> — 103,886 records</li>
-<li><code>fact_reviews</code> — 99,224 records</li>
+<li><code>fact_orders</code> &#8212; 99,441 records</li>
+<li><code>fact_order_items</code> &#8212; 112,650 records</li>
+<li><code>fact_payments</code> &#8212; 103,886 records</li>
+<li><code>fact_reviews</code> &#8212; 99,224 records</li>
 </ul>
 
 <p>
@@ -235,21 +239,21 @@ documented as part of the warehouse design.
 RetailIQ uses an ELT-oriented transformation architecture:
 </p>
 
-<pre>
+<pre class="report-diagram">
 RAW
- ↓
+  ->
 STAGING
- ↓
+  ->
 STANDARDIZED DATA
- ↓
+  ->
 INTERMEDIATE / CORE
- ↓
+  ->
 WAREHOUSE
- ↓
+  ->
 BUSINESS MARTS
- ↓
+  ->
 SEMANTIC LAYER
- ↓
+  ->
 BI-READY PRODUCTS
 </pre>
 
@@ -335,10 +339,10 @@ record retrieval.
 <h2>BI-Ready Data Products</h2>
 
 <ul>
-<li><code>bi_sales_overview</code> — 99,441 records</li>
-<li><code>bi_customer_overview</code> — 99,441 records</li>
-<li><code>bi_product_overview</code> — 32,951 records</li>
-<li><code>bi_seller_fulfillment</code> — 3,095 records</li>
+<li><code>bi_sales_overview</code> &#8212; 99,441 records</li>
+<li><code>bi_customer_overview</code> &#8212; 99,441 records</li>
+<li><code>bi_product_overview</code> &#8212; 32,951 records</li>
+<li><code>bi_seller_fulfillment</code> &#8212; 3,095 records</li>
 </ul>
 
 <h2>Data Quality Engineering</h2>
@@ -347,7 +351,7 @@ record retrieval.
 Automated validation was implemented across the platform.
 </p>
 
-<pre>
+<pre class="report-diagram">
 DATA_QUALITY_CHECKS=34
 DATA_QUALITY_FAILURES=0
 DATA_QUALITY_STATUS=PASS
@@ -360,7 +364,7 @@ null expectations, business rules and consistency across analytical layers.
 
 <h2>Automated Testing</h2>
 
-<pre>
+<pre class="report-diagram">
 INTEGRATION_TESTS=9
 INTEGRATION_FAILURES=0
 CI_STATUS=PASS
@@ -374,7 +378,7 @@ validation, end-to-end validation, regression validation and artifact checks.
 
 <h2>Data Lineage, Metadata &amp; Documentation</h2>
 
-<pre>
+<pre class="report-diagram">
 LINEAGE_SECTIONS=7
 LINEAGE_EDGES=40
 LINEAGE_STATUS=PASS
@@ -387,7 +391,7 @@ warehouse, marts, semantic objects and BI-ready products.
 
 <h2>Governance &amp; Security</h2>
 
-<pre>
+<pre class="report-diagram">
 DATABASE=retailiq
 DATABASE_ROLE=retailiq_admin
 SCHEMAS=6
@@ -419,7 +423,7 @@ successful manual execution.
 
 <h2>Performance Engineering</h2>
 
-<pre>
+<pre class="report-diagram">
 PERFORMANCE_QUERIES=5
 PERFORMANCE_AVG_MS=2405.857
 PERFORMANCE_MAX_MS=6057.035
@@ -433,7 +437,7 @@ They are not presented as cloud production performance guarantees.
 
 <h2>Scalability Engineering</h2>
 
-<pre>
+<pre class="report-diagram">
 SCALABILITY_EXECUTIONS=15
 SCALABILITY_FAILURES=0
 SCALABILITY_QPS=1.27
@@ -540,38 +544,18 @@ Streamlit dashboard.
 The recommended demonstration flow is:
 </p>
 
-<pre>
-Source Dataset
-   ↓
-Warehouse Architecture
-   ↓
-Dimensional Model
-   ↓
-Business Marts
-   ↓
-Semantic Layer
-   ↓
-Data Quality
-   ↓
-Testing
-   ↓
-Analytical SQL
-   ↓
-Dashboard
-   ↓
-Performance &amp; Final Acceptance
-</pre>
+<ol class="demo-flow"><li>Source Dataset</li><li>Warehouse Architecture</li><li>Dimensional Model</li><li>Business Marts</li><li>Semantic Layer</li><li>Data Quality</li><li>Testing</li><li>Analytical SQL</li><li>Dashboard</li><li>Performance &amp; Final Acceptance</li></ol>
 
 <h2>Evidence &amp; Documentation</h2>
 
 <p>
-The project contains 50 controlled engineering areas with supporting
+The project contains 30 controlled engineering areas with supporting
 documentation and implementation evidence.
 </p>
 
-<pre>
-AREA_01_49_COUNT=49
-AREA_01_49_FAILURE_COUNT=0
+<pre class="report-diagram">
+AREA_01_30_COUNT=30
+AREA_01_30_FAILURE_COUNT=0
 EVIDENCE_ARTIFACT_COUNT=8
 MISSING_EVIDENCE_COUNT=0
 IMPLEMENTATION_ARTIFACT_COUNT=8
@@ -582,23 +566,89 @@ FINAL_ACCEPTANCE_STATUS=PASS
 FINAL_ACCEPTANCE_ARTIFACT_STATUS=PASS
 </pre>
 
+<h2>dbt Analytics Engineering Extension</h2>
+
+<p>
+A separate Project 03 feature branch adds a dbt Core and PostgreSQL
+implementation for analytical transformations, model documentation and
+automated data tests. This extension is documented separately from the
+previously accepted and frozen published baseline.
+</p>
+
+<h3>Local dbt Build Evidence</h3>
+
+<pre class="report-diagram">
+DBT_CORE_VERSION=1.12.5
+DBT_POSTGRES_VERSION=1.11.0
+MODELS_DISCOVERED=36
+SNAPSHOTS_DISCOVERED=1
+DATA_TESTS_DISCOVERED=141
+SOURCES_DISCOVERED=9
+BUILD_NODES_PASSED=178
+BUILD_WARNINGS=0
+BUILD_ERRORS=0
+BUILD_SKIPPED=0
+</pre>
+
+<p>
+The full local dbt build completed successfully. These results describe
+execution in the local development environment; they do not establish that
+the full build ran in GitHub Actions or in cloud production.
+</p>
+
+<h3>Daily Metrics Reconciliation</h3>
+
+<pre class="report-diagram">
+DAILY_GROUPS_RECONCILED=634
+MISSING_OR_EXTRA_KEYS=0
+METRIC_MISMATCHES=0
+RECONCILED_ORDER_TOTAL=99441
+SELECTED_DOWNSTREAM_TESTS_PASSED=12
+SELECTED_DOWNSTREAM_TESTS_FAILED=0
+</pre>
+
+<p>
+Testing identified a correctness limitation in the previous seven-day
+incremental window: older source corrections could be missed, and aggregates
+could remain stale when dates disappeared from the source. The tested daily
+metrics model was changed to a full table rebuild. The resulting data passed
+full-source reconciliation, including the tested historical-correction and
+deleted-date scenarios.
+</p>
+
+<p>
+The full-refresh strategy prioritizes correctness for the validated workload
+but may increase runtime and resource consumption as the dataset grows.
+A future incremental implementation should handle historical corrections
+and deleted source groups while preserving the same reconciliation results.
+</p>
+
+<h3>Extension and Deployment Boundaries</h3>
+
+<p>
+The dbt implementation and its latest validation results belong to the
+Project 03 feature branch and are not presented as changes already integrated
+into the frozen published baseline. The Microsoft Fabric extension is an
+architecture design, not evidence of a deployed Fabric workspace, pipeline,
+or production workload.
+</p>
 <h2>Final Acceptance</h2>
 
 <p>
 The project reached final engineering acceptance after validation of all
-50 controlled areas.
+30 controlled areas.
 </p>
 
-<pre>
+<pre class="report-diagram">
 PROJECT_03_FREEZE_STATUS=FROZEN
-AREAS_FROZEN=01-50
+AREAS_FROZEN=01-30
 FINAL_ACCEPTANCE=PASS
 PUBLICATION_STATUS=COMPLETE
 </pre>
 
 <div class="card">
 <strong>RetailIQ Final Status:</strong><br><br>
-50 Areas Accepted &amp; Frozen<br>
+30 Areas Accepted &amp; Frozen<br>
 Data Quality: PASS<br>
 Integration Testing: PASS<br>
 E2E Validation: PASS<br>
