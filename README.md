@@ -17,9 +17,9 @@ This portfolio presents a progression across complementary Data Engineering syst
 
 | Project | Focus | Status |
 |---|---|---|
-| **01 â€” Enterprise AI-Powered Real-Time EV Fleet Data Platform** | Real-time streaming, Kafka, Spark, PostgreSQL, Kubernetes and AI-enabled data systems | **Complete / Frozen** |
-| **02 â€” Cloud-Native Lakehouse, CDC & AI-Ready Data Platform** | AWS, S3, CDC, Parquet, Apache Iceberg, Terraform, governance and observability | **Engineering Complete / Acceptance Pending** |
-| **03 â€” Modern Warehouse + Analytics Engineering** | Modern analytical data platforms, ELT, data modeling and BI-ready data | **Complete / Frozen** |
+| **01 — Enterprise AI-Powered Real-Time EV Fleet Data Platform** | Real-time streaming, Kafka, Spark, PostgreSQL, Kubernetes and AI-enabled data systems | **Complete / Frozen** |
+| **02 — Cloud-Native Lakehouse, CDC & AI-Ready Data Platform** | AWS, S3, CDC, Parquet, Apache Iceberg, Terraform, governance and observability | **Engineering Complete / Acceptance Pending** |
+| **03 — Modern Warehouse + Analytics Engineering** | Modern analytical data platforms, ELT, data modeling and BI-ready data | **Complete / Frozen** |
 
 ## Engineering Approach
 
@@ -42,7 +42,7 @@ Local validation, cloud validation and production deployment are explicitly dist
 
 ## Flagship Projects
 
-### Project 01 â€” Enterprise AI-Powered Real-Time EV Fleet Data Platform
+### Project 01 — Enterprise AI-Powered Real-Time EV Fleet Data Platform
 
 Real-world EV telemetry platform covering ingestion, Kafka streaming, distributed processing, PostgreSQL, feature engineering, anomaly detection, FastAPI, React, Docker, Kubernetes, CI/CD and security validation.
 
@@ -52,7 +52,7 @@ https://github.com/cvsandeep0105-netizen/enterprise-ai-real-time-ev-fleet-data-p
 **Engineering Report:**  
 https://cvsandeep0105-netizen.github.io/data-engineering-portfolio/engineering-report.html
 
-### Project 02 â€” Cloud-Native Lakehouse, CDC & AI-Ready Data Platform
+### Project 02 — Cloud-Native Lakehouse, CDC & AI-Ready Data Platform
 
 Cloud data platform covering operational PostgreSQL, logical CDC validation, immutable data layers, Parquet, Apache Iceberg, incremental processing, data quality, reconciliation, governance, AWS infrastructure, Terraform, observability and bounded AI-assisted data engineering.
 
