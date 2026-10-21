@@ -51,7 +51,7 @@ pre.command{background:#050c15;border:1px solid var(--line);padding:18px;border-
 <h1>Cloud-Native Lakehouse, CDC & AI-Ready Data Platform</h1>
 <p class="lead">Production-oriented cloud data engineering platform demonstrating operational PostgreSQL, CDC engineering, lakehouse architecture, incremental processing, data quality, governance, security, observability, infrastructure as code, CI/CD and bounded AI-assisted data engineering.</p>
 <div class="badges">
-<span class="badge">AREAS 01–39 FROZEN · AREA 40 ACCEPTANCE PENDING</span>
+<span class="badge">IMPLEMENTATION DOCUMENTED / ACCEPTANCE PENDING</span>
 <span class="badge">AWS</span>
 <span class="badge">Apache Iceberg</span>
 <span class="badge">PostgreSQL CDC</span>
@@ -59,9 +59,9 @@ pre.command{background:#050c15;border:1px solid var(--line);padding:18px;border-
 <span class="badge">PySpark</span>
 </div>
 <div class="actions">
-<a class="button primary" href="https://github.com/cvsandeep0105-netizen/cloud-native-lakehouse-cdc-platform" target="_blank">GitHub Repository →</a>
-<a class="button" href="../../README.md">Project README →</a>
-<a class="button" href="../runbook/RUNBOOK.md">Engineering Runbook →</a>
+<a class="button primary" href="https://github.com/cvsandeep0105-netizen/cloud-native-lakehouse-cdc-platform" target="_blank">GitHub Repository â†’</a>
+<a class="button" href="../../README.md">Project README â†’</a>
+<a class="button" href="../runbook/RUNBOOK.md">Engineering Runbook â†’</a>
 </div>
 </div>
 </header>
@@ -195,7 +195,7 @@ PostgreSQL Operational Model
 <section>
 <h2>Lakehouse Engineering</h2>
 <p>The layered platform follows the engineering flow:</p>
-<div class="notice"><strong>Raw → Bronze → Iceberg → Silver → Gold</strong></div>
+<div class="notice"><strong>Raw â†’ Bronze â†’ Iceberg â†’ Silver â†’ Gold</strong></div>
 <p>Local Iceberg validation covered all 9 datasets, including row-count reconciliation, column reconciliation and snapshot presence.</p>
 <div class="notice warn"><strong>AWS boundary:</strong> the deployed AWS environment provides S3, KMS, Glue Catalog, Athena and related infrastructure. This report does not claim AWS-native Iceberg tables were deployed.</div>
 </section>
@@ -254,7 +254,7 @@ PostgreSQL Operational Model
 <tr><td>Athena</td><td>Engine 3 workgroup deployed</td></tr>
 <tr><td>IAM</td><td>Data-platform role and policy deployed</td></tr>
 <tr><td>CloudWatch</td><td>Operational log groups deployed</td></tr>
-<tr><td>Terraform</td><td>Normal plan reported no changes; refresh-only plan identified live-configuration and saved-state differences requiring reconciliation. No apply was performed during this review.</td></tr>
+<tr><td>Terraform</td><td>A refresh-only plan identified differences between live AWS configuration and saved Terraform state. The reviewed refresh-only plan was applied to local Terraform state only (zero resources added, changed, or destroyed); no AWS infrastructure changes were made. A fresh normal plan then reported no changes.</td></tr>
 </table>
 </section>
 
@@ -323,8 +323,23 @@ PostgreSQL Operational Model
 
 <section>
 <h2>Final Acceptance</h2>
-<p>The engineering implementation, validation controls and AWS deployment evidence have been completed and validated against the project acceptance criteria.</p>
-<div class="notice"><strong>Engineering implementation:</strong> the implementation and recorded deployment validation are documented in the evidence. Final project acceptance remains pending reconciliation of technical evidence, Terraform findings, repository publication, portfolio integration, and the Area 40 acceptance gates.</div>
+<p><strong>Status: IN PROGRESS — FINAL ACCEPTANCE NOT GRANTED</strong></p>
+<p>Area 40 remains the final integration, acceptance, and project-freeze stage. The engineering implementation and previously documented Areas 01 through 39 results are retained; this status update does not reopen completed engineering areas.</p>
+<p>The following acceptance gates remain open:</p>
+<ol>
+<li>Reconcile the approved Area 40 requirements against the available evidence.</li>
+<li>Confirm the README, Markdown report, HTML report, and Area 40 evidence records communicate a consistent acceptance status.</li>
+<li>Verify the final GitHub repository presentation and published portfolio report after any explicitly approved publication.</li>
+<li>Verify portfolio integration and preservation of Project 01.</li>
+<li>Reconcile the authoritative Area 40 evidence index.</li>
+<li>Complete the final acceptance review; acceptance and project freeze remain unauthorized until all applicable gates pass.</li>
+</ol>
+<p><strong>Resolved during this review:</strong></p>
+<ul>
+<li><strong>Glue-table scope:</strong> AWS Glue is a planned cloud catalog; Glue table execution is not claimed. The Terraform catalog module defines the Glue database and Athena workgroup; no Glue tables were added.</li>
+<li><strong>Terraform state reconciliation:</strong> The reviewed refresh-only plan was applied to local state only. The subsequent normal plan reported no changes; no AWS infrastructure changes were made.</li>
+</ul>
+<p>Project acceptance and freeze will be recorded only after the required gates have been verified and the authoritative Area 40 evidence index has been updated accordingly.</p>
 </section>
 </main>
 
